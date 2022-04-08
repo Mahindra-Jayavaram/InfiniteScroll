@@ -2,13 +2,15 @@
   let nextPage = 1;
   const content = document.querySelector('.content');
   
+  let i = 1 
   function renderUsers(users) {
     console.log(users)
     users.results.map(user => {
       const element = document.createElement('div');
-      // const name = 
       element.className ='user';
-      element.innerHTML = user.name.title+"."+user.name.first+" "+user.name.last;
+      // element.innerText = user.name.title+"."+user.name.first+" "+user.name.last;
+      element.innerText = "Masai Student" + " "+ i;
+      i= i+1;
       content.append(element);
     });
   }
@@ -22,6 +24,7 @@
   async function loadMoreUsers() {
     const { scrollTop, clientHeight, scrollHeight } = content;
     if (scrollHeight - scrollTop === clientHeight) {
+      // console.log(scrollHeight-scrollTop)
       const users = await getUsers(nextPage);
       console.log(users)
       renderUsers(users);
